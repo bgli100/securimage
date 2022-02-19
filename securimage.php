@@ -1802,7 +1802,7 @@ class Securimage
             $imagecreate = 'imagecreate';
         }
 
-        $this->im = $imagecreate($this->image_width, $this->image_height);
+        $this->im = $imagecreate((int)$this->image_width, (int)$this->image_height);
 
         if (function_exists('imageantialias')) {
             imageantialias($this->im, true);
@@ -1811,7 +1811,7 @@ class Securimage
         $this->allocateColors();
 
         if ($this->perturbation > 0) {
-            $this->tmpimg = $imagecreate($this->image_width * $this->iscale, $this->image_height * $this->iscale);
+            $this->tmpimg = $imagecreate((int)($this->image_width * $this->iscale), (int)($this->image_height * $this->iscale));
             imagepalettecopy($this->tmpimg, $this->im);
         } else {
             $this->iscale = 1;
@@ -1929,12 +1929,12 @@ class Securimage
     {
         // set background color of image by drawing a rectangle since imagecreatetruecolor doesn't set a bg color
         imagefilledrectangle($this->im, 0, 0,
-                             $this->image_width, $this->image_height,
+                             (int)$this->image_width, (int)$this->image_height,
                              $this->gdbgcolor);
 
         if ($this->perturbation > 0) {
             imagefilledrectangle($this->tmpimg, 0, 0,
-                                 $this->image_width * $this->iscale, $this->image_height * $this->iscale,
+                                 (int)($this->image_width * $this->iscale), (int)($this->image_height * $this->iscale),
                                  $this->gdbgcolor);
         }
 
@@ -2315,7 +2315,7 @@ class Securimage
 
             $theta = ($this->frand() - 0.5) * M_PI * 0.33;
             $w = $this->image_width;
-            $len = mt_rand($w * 0.4, $w * 0.7);
+            $len = mt_rand((int)($w * 0.4), (int)($w * 0.7));
             $lwid = mt_rand(0, 2);
 
             $k = $this->frand() * 0.6 + 0.2;
@@ -2335,7 +2335,7 @@ class Securimage
             for ($i = 0; $i < $n; ++ $i) {
                 $x = $x0 + $i * $dx + $amp * $dy * sin($k * $i * $step + $phi);
                 $y = $y0 + $i * $dy - $amp * $dx * sin($k * $i * $step + $phi);
-                imagefilledrectangle($this->im, $x, $y, $x + $lwid, $y + $lwid, $this->gdlinecolor);
+                imagefilledrectangle($this->im, (int)$x, (int)$y, (int)($x + $lwid), (int)($y + $lwid), $this->gdlinecolor);
             }
         }
     }
