@@ -1,5 +1,5 @@
 {
-    "name": "dapphp/securimage",
+    "name": "bgli100/securimage",
     "type": "library",
     "description": "PHP CAPTCHA Library",
     "keywords": ["captcha","security","forms","anti-spam"],
